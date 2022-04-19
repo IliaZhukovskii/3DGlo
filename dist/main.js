@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("one.js"),console.log("two.js")})();
+(()=>{"use strict";timer("20 october 2022")})();
