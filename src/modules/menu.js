@@ -12,12 +12,15 @@ let menu = () => {
   let handleMenu = () => {
     menu.classList.toggle('active-menu');
   };
+
   //По меню
   menuBtn.addEventListener('click', handleMenu);
+
   //По кнопке
   closeBtn.addEventListener('click', handleMenu);
+
   //По пунктам меню
-  for (let item of menuItems){
+  for (let item of menuItems) {
     item.addEventListener('click', handleMenu);
   }
   //По кнопке Escape
@@ -26,7 +29,19 @@ let menu = () => {
       menu.classList.remove('active-menu');
     }
   });
-  
+
+  //Плавная прокрутка страницы при клике на ссылки
+  let animateLinks = document.querySelectorAll('a[href^="#"]');
+  for (let link of animateLinks) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      let id = link.getAttribute('href');
+      document.querySelector(id).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  }
 };
 
 export default menu;
