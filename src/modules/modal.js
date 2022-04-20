@@ -43,9 +43,9 @@ let modal = () => {
   
   //Закрытие по клику вне окна
   modal.addEventListener('click', (e) => {
-    if ( e.target.className != 'popup-content' ) {
+    if ( e.target.className == 'popup') { 
         closeModal();
-    };
+    }
   });
 
   //Закрытие по кнопке Escape
