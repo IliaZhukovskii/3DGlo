@@ -11,13 +11,11 @@ let menu = () => {
   };
 
 
- 
   document.addEventListener('click', e => {
-    //Закрытие по кнопке, пункту меню, клику  вне меню
+    //Закрытие по кнопке, пункту меню
     if (e.target.closest('.menu') ||
       e.target.classList.contains('close-btn') ||
-      e.target.closest('menu>ul>li>a') ||
-      !e.target.closest('menu')) {
+      e.target.closest('menu>ul>li>a')){
       handleMenu();
     }
 
