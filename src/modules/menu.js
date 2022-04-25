@@ -19,6 +19,11 @@ let menu = () => {
       handleMenu();
     }
 
+    //Закрытие по клику вне меню
+    if(!e.target.closest('.menu')){
+      menu.classList.remove('active-menu');
+    }
+
     //Плавный переход по ссылкам
     if (e.target.closest('a[href^="#"]')) {
       e.preventDefault();
