@@ -4,7 +4,6 @@ let modal = () => {
   //Получение элементов со страницы
   let modal = document.querySelector('.popup');
   let buttons = document.querySelectorAll('.popup-btn');
-  let closeBtn = modal.querySelector('.popup-close');
   let modalContent = modal.querySelector('.popup-content');
   let mediaQuery = window.matchMedia('(min-width: 768px)');
 
@@ -13,7 +12,7 @@ let modal = () => {
   modalContent.style.top = 0 + 'px';
 
   //Анимация появления модального окна
-  let animateOpen = () => {
+  const animateOpen = () => {
     count++;
     modalContent.style.top = count + 'px';
     if (count < 60) {
@@ -32,19 +31,15 @@ let modal = () => {
   }
 
   //Закрытие модального окна
-  let closeModal = () => {
+  const closeModal = () => {
     modal.style.display = 'none';
     count = 0;
   };
-  //Закрытие по кнопке
-  closeBtn.addEventListener('click', () => {
-    closeModal();
-  });
-  
-  //Закрытие по клику вне окна
+
+  //Закрытие по кнопке и клику вне окна
   modal.addEventListener('click', (e) => {
-    if ( e.target.className == 'popup') { 
-        closeModal();
+    if (e.target.classList.contains('popup') || e.target.classList.contains('popup-close')) {
+      closeModal();
     }
   });
 

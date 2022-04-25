@@ -7,9 +7,9 @@ let inputPlaceholder = document.querySelectorAll('input[placeholder="Ваше с
 let inputEmail = document.querySelectorAll('input[type="email"]');
 let inputTel = document.querySelectorAll('input[type="tel"]');
 
-console.log(inputText);
 
-let validateForm = () => {
+
+const validateForm = () => {
 
   //Ввод в калькуляторе только цифр 
   for (let item of calcInput) {
@@ -19,18 +19,18 @@ let validateForm = () => {
   }
 
   //Функция проверки на ввод только кириллицы в любом регистре, дефиса и пробела
-  let checkCyrillic = (e) => {
+  const checkCyrillic = (e) => {
     e.target.value = e.target.value.replace(/[^а-яА-Я\s-]/g, "");
   };
 
   //Функция проверки на ввод только олить ввод только латиницы в любом регистре,
   //цифры и спецсимволы:  @  -  _  . ! ~ * '
-  let checkLatin = (e) => {
+  const checkLatin = (e) => {
     e.target.value = e.target.value.replace(/[^\w-@.!~*']/g, "");
   };
 
   //Функция проверки на ввод только цифр, круглых скобок и дефис
-  let checkNumber = (e) => {
+  const checkNumber = (e) => {
     e.target.value = e.target.value.replace(/[^\d()-]/g, "");
   };
 

@@ -7,7 +7,7 @@ let timer = (deadline) => {
   let timerSeconds = document.getElementById('timer-seconds');
 
   //Рассчет
-  let getTimeRemaining = () => {
+  const getTimeRemaining = () => {
     let dateStop = new Date(deadline).getTime();
     let dateNiw = new Date().getTime();
     let timeRemaining = (dateStop - dateNiw) / 1000;
@@ -24,7 +24,7 @@ let timer = (deadline) => {
   };
 
   //Вывод таймера на страницу
-  let updateClock = () => {
+  const updateClock = () => {
     let getTime = getTimeRemaining();
 
     //Проверка, на кол-во символов
@@ -44,7 +44,7 @@ let timer = (deadline) => {
   };
 
   //Запуск таймера
-  let setIntervalFun = () => {
+  const setIntervalFun = () => {
     let getTime = getTimeRemaining();
     if (getTime.timeRemaining > 0) {
       setInterval(updateClock, 1000);
