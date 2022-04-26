@@ -15,25 +15,23 @@ let menu = () => {
     //Закрытие по кнопке, пункту меню
     if (e.target.closest('.menu') ||
       e.target.classList.contains('close-btn') ||
-      e.target.closest('menu>ul>li>a')){
+      e.target.closest('menu>ul>li>a')) {
       handleMenu();
     }
+  });
 
-    //Закрытие по клику вне меню
-    if(!e.target.closest('.menu')){
-      menu.classList.remove('active-menu');
-    }
-
-    //Плавный переход по ссылкам
-    if (e.target.closest('a[href^="#"]')) {
-      e.preventDefault();
-      let id = e.target.getAttribute('href');
-      document.querySelector(id).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+  //Плавная прокрутка страницы при клике на ссылки
+    let animateLinks = document.querySelectorAll('a[href^="#"]');
+    for (let link of animateLinks) {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        let id = link.getAttribute('href');
+        document.querySelector(id).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
       });
     }
-  });
 };
 
 export default menu;
