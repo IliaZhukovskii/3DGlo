@@ -1,5 +1,7 @@
 'use strict';
 
+import {resultCalc} from './helpers';
+
 const calc = (price) => {
 
   //Получение переменных
@@ -36,29 +38,14 @@ const calc = (price) => {
     }
   };
 
-  //Вывод результата
-  const out = () => {
-    let n = 0;
-    let interval = 0;
-    interval = setInterval(() => {
-      if (n < totalValue) {
-        if (totalValue < 500) {
-          n += 1;
-        } else {
-          n += 20;
-          //Иначе очень долго приходиться ждать
-        }
-        total.innerHTML = n;
-      }
-    }, 0.0000000001);
-  };
+  
 
   //Проверка на изменение инпутов калькулятора
   calcBlock.addEventListener('change', (e) => {
     if (e.target === calcType || e.target === calcSquare ||
       e.target === calcCount || e.target === calcDay) {
       countCalc();
-      out();
+      resultCalc(totalValue, total);
     }
   });
 };
