@@ -11,12 +11,7 @@ let modal = () => {
   let modalContent = modal.querySelector('.popup-content');
   let mediaQuery = window.matchMedia('(min-width: 768px)');
   
-  let count;
 
-  //Начальное положение модального окна
-  modalContent.style.top = 0 + 'px';
-
-  
   //Открытие модального окна
   for (let btn of buttons) {
     btn.addEventListener('click', () => {
@@ -30,7 +25,6 @@ let modal = () => {
   //Закрытие модального окна
   const closeModal = () => {
     modal.style.display = 'none';
-    count = 0;
   };
 
   //Закрытие по кнопке и клику вне окна

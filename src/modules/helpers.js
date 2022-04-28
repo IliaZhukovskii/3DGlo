@@ -18,14 +18,20 @@ const resultCalc = (totalValue, total) => {
 };
 
 
-//Анимация появления модального окна
-  const animateOpen = (object, count = 0) => {
+//Анимация появления 
+const animateOpen = (object) => {
+  let count = 0;
+  //Начальное положение
+  object.style.top = 0 + 'px';
+  const animate = () => {
     count++;
     object.style.top = count + 'px';
     if (count < 60) {
-      setTimeout(animateOpen, 5);
+      setTimeout(animate, 5);
     }
   };
+  animate();
+};
 
 
 export {
