@@ -20,7 +20,7 @@ const validateForm = () => {
 
   //Функция проверки на ввод только кириллицы в любом регистре, дефиса и пробела
   const checkCyrillic = (e) => {
-    e.target.value = e.target.value.replace(/[^а-яА-Я\s-]/g, "");
+    e.target.value = e.target.value.replace(/[^а-яА-Я\s,.-]/g, "");
   };
 
   //Функция проверки на ввод только олить ввод только латиницы в любом регистре,
@@ -31,7 +31,7 @@ const validateForm = () => {
 
   //Функция проверки на ввод только цифр, круглых скобок и дефис
   const checkNumber = (e) => {
-    e.target.value = e.target.value.replace(/[^\d()-]/g, "");
+    e.target.value = e.target.value.replace(/[^\d()+-]/g, "");
   };
 
   //Проверка для input type="text"

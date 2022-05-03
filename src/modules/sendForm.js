@@ -8,29 +8,24 @@ const sendForm = ({
   let errorText = 'Ошибка...';
   let successText = 'Спасибо! Наш менеджер с Вами свяжется';
 
-  let inputPhone = form.user_phone;
-  let inputName = form.user_name;
-  let inputMessage = form.user_message;
 
-
+  //функция на валидность email и номера телефона
   const validate = (list) => {
-
-    inputPhone = inputPhone.value.replace(/[^\d()-+]/g, "");
-
     let success = true;
 
-    list.forEach(input => {
-      if (input.classList.contains('success')) {
+    let email = form.user_email.value;
+    let phone = form.user_phone.value.length;
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    for (let i of list) {
+      if (i.value == '' || phone < 7 || !email.match(pattern)) {
         success = false;
       }
-    });
-
-
-
-
+    }
     return success;
   };
 
+  //Отправка данных
   const sendData = (data) => {
     return fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
@@ -41,6 +36,7 @@ const sendForm = ({
     }).then(res => res.json());
   };
 
+  //Отправка формы
   const submitForm = () => {
     let formElements = form.querySelectorAll('input');
     let formData = new FormData(form);
@@ -56,7 +52,6 @@ const sendForm = ({
     someElem.forEach(elem => {
       let element = document.getElementById(elem.id);
 
-
       if (elem.type === 'block') {
         FormBody[elem.id] = element.textContent;
       } else if (e.type === 'input') {
@@ -64,6 +59,7 @@ const sendForm = ({
       }
     });
 
+    //Проверка и отправка формы
     if (validate(formElements)) {
       sendData(FormBody)
         .then(data => {
@@ -95,10 +91,6 @@ const sendForm = ({
   } catch (error) {
     console.log(error.message);
   }
-
-
-
-
 };
 
 export default sendForm;
