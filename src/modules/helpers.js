@@ -7,9 +7,9 @@ const resultCalc = (totalValue, total) => {
   interval = setInterval(() => {
     if (n < totalValue) {
       if (totalValue < 500) {
-        n += 1;
-      } else {
         n += 20;
+      } else {
+        n += 40;
         //Иначе очень долго приходиться ждать
       }
       total.innerHTML = n;

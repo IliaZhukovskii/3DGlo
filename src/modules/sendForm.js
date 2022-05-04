@@ -3,22 +3,22 @@ const sendForm = ({
   someElem = []
 }) => {
   let form = document.getElementById(formId);
+  let phone = form.user_phone;
+  let email = form.user_email;
+  let emailExample = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
   let statusBlock = document.createElement('div');
   let loadText = 'Загрузка...';
   let errorText = 'Ошибка...';
   let successText = 'Спасибо! Наш менеджер с Вами свяжется';
 
 
+
   //функция на валидность email и номера телефона
   const validate = (list) => {
     let success = true;
-
-    let email = form.user_email.value;
-    let phone = form.user_phone.value.length;
-    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
+    let phoneLength = form.user_phone.value.length;
     for (let i of list) {
-      if (i.value == '' || phone < 7 || !email.match(pattern)) {
+      if (i.value == '' || phoneLength < 7 || !email.value.match(emailExample)) {
         success = false;
       }
     }
@@ -71,8 +71,9 @@ const sendForm = ({
         .catch(error => {
           statusBlock.textContent = errorText;
         });
-    } else {
-      alert('Данные не валидны!');
+      if (form.matches('.inputError')) {
+        console.log('aaa');
+      }
     }
   };
 
@@ -83,13 +84,45 @@ const sendForm = ({
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-
       submitForm();
-
     });
 
   } catch (error) {
     console.log(error.message);
+  }
+
+  //Подсказки для правильного ввода email и номера телефона
+  let formElements = form.querySelectorAll('input');
+  for (let i of formElements) {
+    if (i.matches('.form-phone')) {
+      i.addEventListener('input', () => {
+        if (phone.value.length < 7) {
+          let phoneError = document.querySelector('.phoneError');
+          if (phoneError) {
+            phoneError.remove();
+          }
+          phone.insertAdjacentHTML('afterEnd', '<label for="user_phone" class="phoneError" style="color:red; font-size: 15px;">Не менее 7 цифр</label>');
+        } else if (phone.value.length > 6) {
+          let phoneError = document.querySelector('.phoneError');
+          phoneError.remove();
+        }
+      });
+    } else if (i.matches('.form-email')) {
+      i.addEventListener('input', () => {
+        if (!email.value.match(emailExample)) {
+          let emailError = document.querySelector('.emailError');
+          if (emailError) {
+            emailError.remove();
+          }
+          email.insertAdjacentHTML('afterEnd', '<label for="user_phone" class="emailError" style="color:red; font-size: 15px;" >Пример: example@mail.ru</label>');
+        } else if (email.value.match(emailExample)) {
+          let emailError = document.querySelector('.emailError');
+          if (emailError) {
+            emailError.remove();
+          }
+        }
+      });
+    }
   }
 };
 

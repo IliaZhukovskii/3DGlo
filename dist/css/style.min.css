@@ -134,6 +134,11 @@ body p {
   margin: 0
 }
 
+#form1 .container .row .col-12 label{
+  display: block;
+  margin-top: -30px;
+}
+
 body .close-btn {
   position: fixed;
   top: 30px;
@@ -852,6 +857,10 @@ footer .web {
   body {
     font-size: 1.5rem
   }
+
+  #form1 .container .row .col-12 label{
+  margin-top: -10px;
+}
 
   body h1 {
     font-size: 4rem
