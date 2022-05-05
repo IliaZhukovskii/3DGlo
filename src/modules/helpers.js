@@ -2,19 +2,7 @@
 
 //Анимация вывода результата калькулятора
 const resultCalc = (totalValue, total) => {
-  let n = 0;
-  let interval = 0;
-  interval = setInterval(() => {
-    if (n < totalValue) {
-      if (totalValue < 500) {
-        n += 20;
-      } else {
-        n += 40;
-        //Иначе очень долго приходиться ждать
-      }
-      total.innerHTML = n;
-    }
-  }, 0.0000000001);
+  total.innerHTML = totalValue; 
 };
 
 

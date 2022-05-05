@@ -1,6 +1,8 @@
 'use strict';
 
-import {resultCalc} from './helpers';
+import {
+  resultCalc
+} from './helpers';
 
 const calc = (price) => {
 
@@ -11,7 +13,7 @@ const calc = (price) => {
   let calcCount = document.querySelector('.calc-count');
   let calcDay = document.querySelector('.calc-day');
   let total = document.getElementById('total');
-  let totalValue = 0;
+  let totalValue;
 
   //Вычисление итоговой стоимости
   const countCalc = () => {
@@ -38,14 +40,21 @@ const calc = (price) => {
     }
   };
 
-  
-
   //Проверка на изменение инпутов калькулятора
   calcBlock.addEventListener('change', (e) => {
     if (e.target === calcType || e.target === calcSquare ||
       e.target === calcCount || e.target === calcDay) {
       countCalc();
       resultCalc(totalValue, total);
+    }
+
+
+    //Сброс полей при 
+    if (calcType.value == '' && calcSquare.value !== '' && calcCount.value !== '' && calcDay.value !== '') {
+      calcSquare.value = '';
+      calcCount.value = '';
+      calcDay.value = '';
+      total.innerHTML = 0;
     }
   });
 };
